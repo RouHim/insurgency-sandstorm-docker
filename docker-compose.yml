@@ -7,10 +7,10 @@ services:
       context: .
     env_file:
       - .env
-    volumes:
-      - ./ini-config:/sandstorm/Insurgency/Saved/Config/LinuxServer:ro # Engine.ini, Game.ini
-      - ./txt-config:/sandstorm/Insurgency/Config/Server:ro # Admin.txt, Mods.txt, Motd.txt
-      - ./Mods:/sandstorm/Insurgency/Mods:rw
+    #volumes:
+    #  - ./ini-config:/sandstorm/Insurgency/Saved/Config/LinuxServer:ro # Engine.ini, Game.ini
+    #  - ./txt-config:/sandstorm/Insurgency/Config/Server:ro # Admin.txt, Mods.txt, Motd.txt
+    #  - ./Mods:/sandstorm/Insurgency/Mods:rw
     ports:
       - 27102:27102/tcp
       - 27102:27102/udp

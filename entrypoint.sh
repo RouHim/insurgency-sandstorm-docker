@@ -12,6 +12,8 @@
 # Update and validate game server installation
 steamcmd +login anonymous +force_install_dir /sandstorm +app_update 581330 +quit
 
+mkdir -p /sandstorm/Insurgency/Saved/Config/LinuxServer /sandstorm/Insurgency/Config/Server
+
 CMD=""
 
 if [ -n "$GAME_STATS_TOKEN" ]; then
@@ -20,6 +22,14 @@ fi
 
 if [ -n "$GSLT_TOKEN" ]; then
   CMD="$CMD -GSLTToken=$GSLT_TOKEN"
+fi
+
+if [ -n "$ADMINS" ]; then
+  echo "$ADMINS" | sed -e $'s/,/\\\n/g' >/sandstorm/Insurgency/Config/Server/Admins.txt
+fi
+
+if [ -n "$MESSAGE_OF_THE_DAY" ]; then
+  echo "$MESSAGE_OF_THE_DAY" >/sandstorm/Insurgency/Config/Server/Motd.txt/Admins.txt
 fi
 
 # Configure mods
@@ -45,6 +55,10 @@ fi
 
 if [ -n "$MUTATORS" ]; then
   CMD="$CMD -mutators=$MUTATORS"
+fi
+
+if [ -n "$GAME_INI" ]; then
+  echo "$GAME_INI" > /sandstorm/Insurgency/Saved/Config/LinuxServer/Game.ini
 fi
 
 # Start the sandstorm server executable
