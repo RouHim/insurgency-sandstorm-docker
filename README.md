@@ -18,7 +18,7 @@ Because there were no well-documented, easy-to-use Insurgency: Sandstorm docker 
 
 ## Usage
 
-I really recommend using [docker compose](https://docs.docker.com/compose/).
+I recommend using [docker compose](https://docs.docker.com/compose/).
 
 ### docker-compose
 
@@ -99,7 +99,7 @@ MUTATORS=mutator_name_1,mutator_name_2
 
 - Insurgency: Sandstorm dedicated server
   guide: https://sandstorm-support.newworldinteractive.com/hc/en-us/articles/360049211072-Server-Admin-Guide
-- SteamCMD Guide: https://developer.valvesoftware.com/wiki/SteamCMD
-- ISMC Mod Guide: https://insurgencysandstorm.mod.io/guides/ismcmod-installation-guide
+- SteamCMD guide: https://developer.valvesoftware.com/wiki/SteamCMD
+- ISMC Mod guide: https://insurgencysandstorm.mod.io/guides/ismcmod-installation-guide
 - Inspired by: https://github.com/AndrewMarchukov/insurgency-sandstorm-server-dockerize
 - Built from: https://github.com/RouHim/insurgency-sandstorm-docker
