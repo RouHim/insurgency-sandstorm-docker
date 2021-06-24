@@ -1,6 +1,6 @@
 # beammp-docker
 
-[![CI](https://github.com/RouHim/insurgency-sandstorm-docker/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/RouHim/insurgency-sandstorm-docker/actions/workflows/main.yml)
+[![CI](https://github.com/RouHim/insurgency-sandstorm-docker/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/RouHim/insurgency-sandstorm-docker/actions/workflows/master.yml)
 [![Docker Hub pulls](https://img.shields.io/docker/pulls/rouhim/insurgency-sandstorm-server.svg)](https://hub.docker.com/r/rouhim/insurgency-sandstorm-server)
 [![Docker Hub size](https://img.shields.io/docker/image-size/rouhim/insurgency-sandstorm-server)](https://hub.docker.com/r/rouhim/insurgency-sandstorm-server)
 
