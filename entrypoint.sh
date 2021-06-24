@@ -9,9 +9,9 @@
 #
 ######################
 
-SERVER_CONFIG_DIR="$BASE_DIR/Insurgency/Config/Server"
-LINUX_SERVER_CONFIG_DIR="$BASE_DIR/Insurgency/Saved/Config/LinuxServer"
-SERVER_EXECUTABLE="$BASE_DIR/Insurgency/Binaries/Linux/InsurgencyServer-Linux-Shipping"
+SERVER_CONFIG_DIR="${BASE_DIR}/Insurgency/Config/Server"
+LINUX_SERVER_CONFIG_DIR="${BASE_DIR}/Insurgency/Saved/Config/LinuxServer"
+SERVER_EXECUTABLE="${BASE_DIR}/Insurgency/Binaries/Linux/InsurgencyServer-Linux-Shipping"
 
 VALIDATE_UPDATE_PARAM="+app_update 581330 validate"
 
@@ -98,8 +98,12 @@ fi
 game_ini_count=$(wc -l <"$LINUX_SERVER_CONFIG_DIR/Engine.ini")
 echo "📋️ There are $game_ini_count lines of Game.ini configuration"
 
-echo Command Line: ${CMD}
-
 echo "\n🔫🔫🔫 Starting the Insurgency: Sandstorm game server 🔫🔫🔫\n"
 # Start the sandstorm server executable
-${SERVER_EXECUTABLE} ${START_MAP}?Scenario=${SCENARIO}?MaxPlayers=${MAX_PLAYERS} -hostname=${SERVER_NAME} -Port=27102 -QueryPort=27131 -log ${CMD}
+${SERVER_EXECUTABLE} \
+  "${START_MAP}?Scenario=${SCENARIO}?MaxPlayers=${MAX_PLAYERS}" \
+  -hostname="${SERVER_NAME}" \
+  -Port=27102 \
+  -QueryPort=27131 \
+  -log \
+  "${CMD}"
