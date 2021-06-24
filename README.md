@@ -1,8 +1,9 @@
 # beammp-docker
 
-[![CI](https://github.com/RouHim/insurgency-sandstorm-docker/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/RouHim/insurgency-sandstorm-docker/actions/workflows/master.yml)
-[![Docker Hub pulls](https://img.shields.io/docker/pulls/rouhim/insurgency-sandstorm-server.svg)](https://hub.docker.com/r/rouhim/insurgency-sandstorm-server)
-[![Docker Hub size](https://img.shields.io/docker/image-size/rouhim/insurgency-sandstorm-server)](https://hub.docker.com/r/rouhim/insurgency-sandstorm-server)
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/RouHim/insurgency-sandstorm-docker/CI/master?style=for-the-badge)
+![Docker Pulls](https://img.shields.io/docker/pulls/rouhim/insurgency-sandstorm-server?style=for-the-badge)
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/rouhim/insurgency-sandstorm-server/latest?style=for-the-badge)
+
 
 This project provides a docker container for the [Insurgency: Sandstorm](https://www.insurgency-sandstorm.com/)
 game server and shows its usage in a docker-compose environment.
