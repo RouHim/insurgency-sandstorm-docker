@@ -1,4 +1,4 @@
-# beammp-docker
+# Insurgency: Sandstorm docker server
 
 ![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/RouHim/insurgency-sandstorm-docker/CI/master?style=for-the-badge)
 ![Docker Pulls](https://img.shields.io/docker/pulls/rouhim/insurgency-sandstorm-server?style=for-the-badge)
