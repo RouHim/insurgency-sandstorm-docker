@@ -37,12 +37,12 @@ chmod +x "$SERVER_EXECUTABLE"
 CMD=
 
 if [ -n "$GAME_STATS_TOKEN" ]; then
-  CMD="$CMD -GameStats -GameStatsToken=$GAME_STATS_TOKEN"
+  CMD="${CMD} -GameStats -GameStatsToken=${GAME_STATS_TOKEN}"
   echo "🧮 GameStats Token was successfully configured"
 fi
 
 if [ -n "$GSLT_TOKEN" ]; then
-  CMD="$CMD -GSLTToken=$GSLT_TOKEN"
+  CMD="${CMD} -GSLTToken=${GSLT_TOKEN}"
   echo "💼 GSLTToken was successfully configured"
 fi
 
@@ -59,11 +59,11 @@ fi
 
 # Configure mods
 if [ -n "$ENABLE_MODS" ]; then
-  CMD="$CMD -Mods"
+  CMD="${CMD} -Mods"
   echo "🔥 Mods enabled"
 
   if [ -n "$MODS" ]; then
-    CMD="$CMD -CmdModList=$MODS"
+    CMD="${CMD} -CmdModList=${MODS}"
     mod_list=$(echo "$MODS" | sed -e $'s/,/\\\n - /g')
     echo "🔥 Installed mods: \n - $mod_list"
   fi
@@ -79,13 +79,13 @@ EOF
   fi
 
   if [ -n "$MOD_DOWNLOAD_TRAVEL_TO" ]; then
-    CMD="$CMD -ModDownloadTravelTo=$MOD_DOWNLOAD_TRAVEL_TO"
+    CMD="${CMD} -ModDownloadTravelTo=${MOD_DOWNLOAD_TRAVEL_TO}"
     echo "🧳 Mod Travel to map: $MOD_DOWNLOAD_TRAVEL_TO"
   fi
 fi
 
 if [ -n "$MUTATORS" ]; then
-  CMD="$CMD -mutators=$MUTATORS"
+  CMD="${CMD} -mutators=${MUTATORS}"
   mutator_list=$(echo "$MUTATORS" | sed -e $'s/,/\\n - /g')
   echo "✨️ Installed mutators: \n - $mutator_list"
 fi
@@ -98,8 +98,8 @@ fi
 game_ini_count=$(wc -l <"$LINUX_SERVER_CONFIG_DIR/Engine.ini")
 echo "📋️ There are $game_ini_count lines of Game.ini configuration"
 
-echo Command Line: "$CMD"
+echo Command Line: ${CMD}
 
 echo "\n🔫🔫🔫 Starting the Insurgency: Sandstorm game server 🔫🔫🔫\n"
 # Start the sandstorm server executable
-"$SERVER_EXECUTABLE" "$START_MAP?Scenario=$SCENARIO?MaxPlayers=$MAX_PLAYERS" "-hostname=\"$SERVER_NAME\" -Port=27102 -QueryPort=27131 -log $CMD"
+${SERVER_EXECUTABLE} ${START_MAP}?Scenario=${SCENARIO}?MaxPlayers=${MAX_PLAYERS} -hostname=${SERVER_NAME} -Port=27102 -QueryPort=27131 -log ${CMD}
