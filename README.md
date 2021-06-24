@@ -4,18 +4,17 @@
 ![Docker Pulls](https://img.shields.io/docker/pulls/rouhim/insurgency-sandstorm-server?style=for-the-badge)
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/rouhim/insurgency-sandstorm-server/latest?style=for-the-badge)
 
-
-This project provides a docker container for the [Insurgency: Sandstorm](https://www.insurgency-sandstorm.com/)
-game server and shows its usage in a docker-compose environment.
+This project provides a Docker container for the [Insurgency: Sandstorm](https://www.insurgency-sandstorm.com/)
+game server and demonstrates its use in a docker compose environment.
 
 ## Motivation
 
-Because there were no well-documented, easy-to-use Insurgency: Sandstorm docker images out there, I did one by myself.
+Since there were no well-documented, easy-to-use Insurgency: Sandstorm docker images, I created one myself.
 
 ## About the container
 
-* The container is build nightly
-* Auto updates and validates the server on start
+* Is built nightly
+* Updates and validates the game data to start.
 
 ## Usage
 
@@ -23,15 +22,16 @@ I recommend using [docker compose](https://docs.docker.com/compose/).
 
 ### docker-compose
 
-Check `docker-compose.yml` if interested. The game server configuration should be done within the `.env` file.
+Check `docker-compose.yml` if you are interested. The configuration of the game server should be done in the `.env`
+file.
 
-To get started copy `.env.example` to `.env`.
+To get started, copy `.env.example` to `.env`.
 
 ```bash
 cp .env.example .env
 ```
 
-Adjust the values in the `.env` to your needs and run:
+Adjust the values in the `.env` to your needs and start:
 
 ```bash
 docker-compose pull && docker-compose up -d
@@ -39,22 +39,23 @@ docker-compose pull && docker-compose up -d
 
 ## Configuration
 
-Variable name   | description                                                                                   | default value
---------------- |---------------------------------------------------------------------------------------------- | -------- 
-SERVER_NAME     | The name of the server as it appears on the server browser (replacing My Server with the name of your choice) | empty
-START_MAP     | The start map | empty
-SCENARIO     | You may define an entry with an override game mode as some game modes can share scenarios. | empty
-MAX_PLAYERS     | Maximum number of players that can join the server. On coop servers, this is only the number of human players. | empty
-GSLT_TOKEN     | In order for your server to be able to authenticate with the stats server, see description below. | empty
-GAME_STATS_TOKEN     | Any community server is capable of hosting a stats-enabled game. See description below. | empty
-ADMINS     | A comma separated list of 64-bit Steam IDs (aka steamID64) to be admin on the server. See Description below. | empty
-MESSAGE_OF_THE_DAY     | The server message of the day | empty
-ENABLE_MODS     | Set this to any value to enable mod integration | empty
-MOD_IO_TOKEN     | To be able to communicate with mod.io. See description below | empty
-MODS     | Comma separated list of mod ids, e.g.: 150867,1337 | empty
-MOD_DOWNLOAD_TRAVEL_TO     | Name of a mod map to change after mod download | empty
-MUTATORS     | Comma separated list of mutators, e.g.: ISMC_Hardcore,AllYouCanEat | empty
-GAME_INI     | Fill this value to with entries to be added to the Game.ini. See example in .env.example | empty
+Variable name           | description                                                                                   | default value
+----------------------- |---------------------------------------------------------------------------------------------- | -------- 
+SERVER_NAME             | The name of the server as it appears on the server browser (replacing My Server with the name of your choice) | empty
+START_MAP               | The start map | empty
+SCENARIO                | You may define an entry with an override game mode as some game modes can share scenarios. | empty
+MAX_PLAYERS             | Maximum number of players that can join the server. On coop servers, this is only the number of human players. | empty
+GSLT_TOKEN              | In order for your server to be able to authenticate with the stats server, see description below. | empty
+GAME_STATS_TOKEN        | Any community server is capable of hosting a stats-enabled game. See description below. | empty
+ADMINS                  | A comma separated list of 64-bit Steam IDs (aka steamID64) to be admin on the server. See Description below. | empty
+MESSAGE_OF_THE_DAY      | The server message of the day | empty
+SKIP_UPDATE_VALIDATION  | Set this to any value to skip installed steam game data update and validation | empty
+ENABLE_MODS             | Set this to any value to enable mod integration | empty
+MOD_IO_TOKEN            | To be able to communicate with mod.io. See description below | empty
+MODS                    | Comma separated list of mod ids, e.g.: 150867,1337 | empty
+MOD_DOWNLOAD_TRAVEL_TO  | Name of a mod map to change after mod download | empty
+MUTATORS                | Comma separated list of mutators, e.g.: ISMC_Hardcore,AllYouCanEat | empty
+GAME_INI                | Fill this value to with entries to be added to the Game.ini. See example in .env.example | empty
 
 ### Enable GameStats
 
@@ -86,7 +87,7 @@ GAME_INI     | Fill this value to with entries to be added to the Game.ini. See 
 
 ### Mods
 
-If you want to use mods you have to set the following .env values:
+If you want to use mods, you must set the following .env values:
 
 ```bash
 ENABLE_MODS=true
@@ -100,7 +101,7 @@ MUTATORS=mutator_name_1,mutator_name_2
 
 - Insurgency: Sandstorm dedicated server
   guide: https://sandstorm-support.newworldinteractive.com/hc/en-us/articles/360049211072-Server-Admin-Guide
-- SteamCMD guide: https://developer.valvesoftware.com/wiki/SteamCMD
-- ISMC Mod guide: https://insurgencysandstorm.mod.io/guides/ismcmod-installation-guide
+- SteamCMD Wiki: https://developer.valvesoftware.com/wiki/SteamCMD
+- ISMC Mod Guide: https://insurgencysandstorm.mod.io/guides/ismcmod-installation-guide
 - Inspired by: https://github.com/AndrewMarchukov/insurgency-sandstorm-server-dockerize
 - Built from: https://github.com/RouHim/insurgency-sandstorm-docker

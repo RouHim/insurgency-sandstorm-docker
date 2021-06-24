@@ -13,11 +13,18 @@ SERVER_CONFIG_DIR="$BASE_DIR/Insurgency/Config/Server"
 LINUX_SERVER_CONFIG_DIR="$BASE_DIR/Insurgency/Saved/Config/LinuxServer"
 SERVER_EXECUTABLE="$BASE_DIR/Insurgency/Binaries/Linux/InsurgencyServer-Linux-Shipping"
 
+VALIDATE_UPDATE_PARAM="+app_update 581330 validate"
+
+# Should we skip update and validate the installation
+if [ -n "$SKIP_UPDATE_VALIDATION" ]; then
+  VALIDATE_UPDATE_PARAM=
+fi
+
 # Update and validate game server installation
 bash "$STEAM_CMD" \
   +login anonymous \
   +force_install_dir "$BASE_DIR" \
-  +app_update 581330 validate \
+  "$VALIDATE_UPDATE_PARAM" \
   +quit
 
 # Ensure config folder exists
