@@ -34,7 +34,7 @@ mkdir -p "$SERVER_CONFIG_DIR" "$LINUX_SERVER_CONFIG_DIR"
 chmod +x "$SERVER_EXECUTABLE"
 
 # build server start command
-CMD=""
+CMD=
 
 if [ -n "$GAME_STATS_TOKEN" ]; then
   CMD="$CMD -GameStats -GameStatsToken=$GAME_STATS_TOKEN"
