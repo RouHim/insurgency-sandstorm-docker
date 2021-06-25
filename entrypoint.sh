@@ -101,4 +101,6 @@ echo "📋️ There are $game_ini_count lines of Game.ini configuration"
 echo "\n🔫🔫🔫 Starting the Insurgency: Sandstorm game server 🔫🔫🔫\n"
 
 # Start the sandstorm server executable
-"${SERVER_EXECUTABLE}" "${START_MAP}"?Scenario="${SCENARIO}"?MaxPlayers="${MAX_PLAYERS}" -hostname="${SERVER_NAME}" -Port=27102 -QueryPort=27131 -log ${CMD}
+"${SERVER_EXECUTABLE}" "${START_MAP}"?Scenario="${SCENARIO}"?MaxPlayers="${MAX_PLAYERS}" \
+  -hostname="${SERVER_NAME}" -Port=27102 -QueryPort=27131 -log \
+  ${CMD}
