@@ -1,5 +1,8 @@
 version: "3.9"
 
+volumes:
+  sandstorm-mods:
+
 services:
   sandstorm-server:
     image: rouhim/insurgency-sandstorm-server
@@ -12,6 +15,8 @@ services:
       - 27102:27102/udp
       - 27131:27131/tcp
       - 27131:27131/udp
+    volumes:
+    - sandstorm-mods:/home/steam/sandstorm/Insurgency/Mods
     logging:
       driver: "json-file"
       options:

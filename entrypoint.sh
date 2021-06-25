@@ -8,11 +8,6 @@
 #   3. Starts the actual sandstorm server
 #
 ######################
-
-SERVER_CONFIG_DIR="${BASE_DIR}/Insurgency/Config/Server"
-LINUX_SERVER_CONFIG_DIR="${BASE_DIR}/Insurgency/Saved/Config/LinuxServer"
-SERVER_EXECUTABLE="${BASE_DIR}/Insurgency/Binaries/Linux/InsurgencyServer-Linux-Shipping"
-
 VALIDATE_UPDATE_PARAM="+app_update 581330 validate"
 
 # Should we skip update and validate the installation
@@ -57,6 +52,13 @@ if [ -n "$MESSAGE_OF_THE_DAY" ]; then
   echo "📨️ Message of the day is: $MESSAGE_OF_THE_DAY"
 fi
 
+if [ -n "$MAP_CYCLE" ]; then
+  CMD="${CMD} -MapCycle=MapCycle"
+  echo "$MAP_CYCLE" >"$SERVER_CONFIG_DIR/MapCycle.txt"
+  maps_count=$(wc -l <"$SERVER_CONFIG_DIR/MapCycle.txt")
+  echo "🗺️️ MapCycle is configured with: ${maps_count} maps"
+fi
+
 # Configure mods
 if [ -n "$ENABLE_MODS" ]; then
   CMD="${CMD} -Mods"
@@ -68,20 +70,22 @@ if [ -n "$ENABLE_MODS" ]; then
     echo "🔥 Installed mods: \n - $mod_list"
   fi
 
-  if [ -n "$MOD_IO_TOKEN" ]; then
-    cat <<EOF >"$LINUX_SERVER_CONFIG_DIR/Engine.ini"
-[/Script/ModKit.ModIOClient]
-bHasUserAcceptedTerms=True
-AccessToken="$MOD_IO_TOKEN"
-
-EOF
-    echo "🔑 ModIO integration activated"
-  fi
-
   if [ -n "$MOD_DOWNLOAD_TRAVEL_TO" ]; then
     CMD="${CMD} -ModDownloadTravelTo=${MOD_DOWNLOAD_TRAVEL_TO}"
     echo "🧳 Mod Travel to map: $MOD_DOWNLOAD_TRAVEL_TO"
   fi
+fi
+
+if [ -n "$MOD_IO_TOKEN" ]; then
+  cat <<EOF >>"$LINUX_SERVER_CONFIG_DIR/Engine.ini"
+
+[/Script/ModKit.ModIOClient]
+bHasUserAcceptedTerms=True
+bCachedUserDetails=True
+AccessToken="$MOD_IO_TOKEN"
+
+EOF
+  echo "🔑 ModIO integration activated"
 fi
 
 if [ -n "$MUTATORS" ]; then
@@ -91,12 +95,37 @@ if [ -n "$MUTATORS" ]; then
 fi
 
 if [ -n "$GAME_INI" ]; then
-  echo "" >>"$LINUX_SERVER_CONFIG_DIR/Engine.ini"
-  echo "$GAME_INI" >>"$LINUX_SERVER_CONFIG_DIR/Engine.ini"
+  echo "" >>"$LINUX_SERVER_CONFIG_DIR/Game.ini"
+  echo "$GAME_INI" >>"$LINUX_SERVER_CONFIG_DIR/Game.ini"
 fi
 
-game_ini_count=$(wc -l <"$LINUX_SERVER_CONFIG_DIR/Engine.ini")
+if [ -n "$ENGINE_INI" ]; then
+  echo "" >>"$LINUX_SERVER_CONFIG_DIR/Engine.ini"
+  echo "$ENGINE_INI" >>"$LINUX_SERVER_CONFIG_DIR/Engine.ini"
+fi
+
+game_ini_count=$(wc -l <"$LINUX_SERVER_CONFIG_DIR/Game.ini")
+engine_ini_count=$(wc -l <"$LINUX_SERVER_CONFIG_DIR/Engine.ini")
 echo "📋️ There are $game_ini_count lines of Game.ini configuration"
+echo "📋️ There are $engine_ini_count lines of Engine.ini configuration"
+
+if [ -n "$DEBUG" ]; then
+  echo " # $LINUX_SERVER_CONFIG_DIR/Engine.ini"
+  cat "$LINUX_SERVER_CONFIG_DIR/Engine.ini"
+  echo ""
+
+  echo " # $LINUX_SERVER_CONFIG_DIR/Game.ini"
+  cat "$LINUX_SERVER_CONFIG_DIR/Game.ini"
+  echo ""
+
+  echo " # $SERVER_CONFIG_DIR/MapCycle.txt"
+  cat "$SERVER_CONFIG_DIR/MapCycle.txt"
+  echo ""
+
+  echo " # $SERVER_CONFIG_DIR/Admins.txt"
+  cat "$SERVER_CONFIG_DIR/Admins.txt"
+  echo ""
+fi
 
 echo "\n🔫🔫🔫 Starting the Insurgency: Sandstorm game server 🔫🔫🔫\n"
 

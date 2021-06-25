@@ -37,6 +37,12 @@ Adjust the values in the `.env` to your needs and start:
 docker-compose pull && docker-compose up -d
 ```
 
+To delete the server with all persisted data and volumes (mods):
+
+```bash
+docker-compose down --volumes
+```
+
 ## Configuration
 
 Variable name           | description                                                                                   | default value
@@ -56,6 +62,7 @@ MODS                    | Comma separated list of mod ids, e.g.: 150867,1337 | e
 MOD_DOWNLOAD_TRAVEL_TO  | Name of a mod map to change after mod download | empty
 MUTATORS                | Comma separated list of mutators, e.g.: ISMC_Hardcore,AllYouCanEat | empty
 GAME_INI                | Fill this value to with entries to be added to the Game.ini. See example in .env.example | empty
+MAP_CYCLE               | Fill this value to with entries to be added to the GameCycle.txt See example in .env.ismc.example | empty
 
 ### Enable GameStats
 
